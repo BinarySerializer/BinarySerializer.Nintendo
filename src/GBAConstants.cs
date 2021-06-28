@@ -15,7 +15,7 @@
         public const int TileSize = 8;
         public const int ScreenWidth = 240;
         public const int ScreenHeight = 160;
-        public static Size[] TileShapes { get; } = 
+        public static Size[] SpriteShapes { get; } = 
         {
             new Size(0x08, 0x08),
             new Size(0x10, 0x10),
