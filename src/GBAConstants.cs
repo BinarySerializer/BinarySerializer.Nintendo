@@ -31,6 +31,8 @@
             new Size(0x20, 0x40),
         };
 
+        public static Size GetSpriteShape(int shape, int size) => SpriteShapes[shape * 4 + size];
+
         public class Size
         {
             public Size(int width, int height)
