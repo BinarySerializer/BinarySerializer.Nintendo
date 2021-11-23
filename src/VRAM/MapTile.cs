@@ -14,12 +14,12 @@
             if (Pre_IsAffine)
                 TileIndex = s.Serialize<byte>((byte)TileIndex, name: nameof(TileIndex));
             else
-                s.SerializeBitValues<ushort>(bitFunc =>
+                s.DoBits<ushort>(b =>
                 {
-                    TileIndex = bitFunc(TileIndex, 10, name: nameof(TileIndex));
-                    FlipX = bitFunc(FlipX ? 1 : 0, 1, name: nameof(FlipX)) == 1;
-                    FlipY = bitFunc(FlipY ? 1 : 0, 1, name: nameof(FlipY)) == 1;
-                    PaletteIndex = bitFunc(PaletteIndex, 4, name: nameof(PaletteIndex));
+                    TileIndex = b.SerializeBits<int>(TileIndex, 10, name: nameof(TileIndex));
+                    FlipX = b.SerializeBits<int>(FlipX ? 1 : 0, 1, name: nameof(FlipX)) == 1;
+                    FlipY = b.SerializeBits<int>(FlipY ? 1 : 0, 1, name: nameof(FlipY)) == 1;
+                    PaletteIndex = b.SerializeBits<int>(PaletteIndex, 4, name: nameof(PaletteIndex));
                 });
         }
 

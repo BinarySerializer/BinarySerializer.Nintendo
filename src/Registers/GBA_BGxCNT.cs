@@ -13,16 +13,16 @@
 
         public override void SerializeImpl(SerializerObject s)
         {
-            s.SerializeBitValues<ushort>(bitFunc =>
+            s.DoBits<ushort>(b =>
             {
-                Priority = (byte)bitFunc(Priority, 2, name: nameof(Priority));
-                CharacterBaseBlock = (byte)bitFunc(CharacterBaseBlock, 2, name: nameof(CharacterBaseBlock));
-                Bits_04 = (byte)bitFunc(Bits_04, 2, name: nameof(Bits_04));
-                Mosaic = bitFunc(Mosaic ? 1 : 0, 1, name: nameof(Mosaic)) == 1;
-                Is8Bit = bitFunc(Is8Bit ? 1 : 0, 1, name: nameof(Is8Bit)) == 1;
-                ScreenBaseBlock = (byte)bitFunc(ScreenBaseBlock, 5, name: nameof(ScreenBaseBlock));
-                AffineWrapping = bitFunc(AffineWrapping ? 1 : 0, 1, name: nameof(AffineWrapping)) == 1;
-                BackgroundSize = (byte)bitFunc(BackgroundSize, 2, name: nameof(BackgroundSize));
+                Priority = (byte)b.SerializeBits<int>(Priority, 2, name: nameof(Priority));
+                CharacterBaseBlock = (byte)b.SerializeBits<int>(CharacterBaseBlock, 2, name: nameof(CharacterBaseBlock));
+                Bits_04 = (byte)b.SerializeBits<int>(Bits_04, 2, name: nameof(Bits_04));
+                Mosaic = b.SerializeBits<int>(Mosaic ? 1 : 0, 1, name: nameof(Mosaic)) == 1;
+                Is8Bit = b.SerializeBits<int>(Is8Bit ? 1 : 0, 1, name: nameof(Is8Bit)) == 1;
+                ScreenBaseBlock = (byte)b.SerializeBits<int>(ScreenBaseBlock, 5, name: nameof(ScreenBaseBlock));
+                AffineWrapping = b.SerializeBits<int>(AffineWrapping ? 1 : 0, 1, name: nameof(AffineWrapping)) == 1;
+                BackgroundSize = (byte)b.SerializeBits<int>(BackgroundSize, 2, name: nameof(BackgroundSize));
             });
         }
     }
