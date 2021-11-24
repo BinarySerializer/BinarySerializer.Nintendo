@@ -23,35 +23,35 @@
         {
             s.DoBits<ushort>(b =>
             {
-                YPosition = (byte)b.SerializeBits<int>(YPosition, 8, name: nameof(YPosition));
-                ObjectMode = (GBA_OBJ_ATTR_ObjectMode)b.SerializeBits<int>((int)ObjectMode, 2, name: nameof(ObjectMode));
-                GraphicsMode = (GBA_OBJ_ATTR_GraphicsMode)b.SerializeBits<int>((int)GraphicsMode, 2, name: nameof(GraphicsMode));
-                Mosaic = b.SerializeBits<int>(Mosaic ? 1 : 0, 1, name: nameof(Mosaic)) == 1;
-                Is8Bit = b.SerializeBits<int>(Is8Bit ? 1 : 0, 1, name: nameof(Is8Bit)) == 1;
-                SpriteShape = (byte)b.SerializeBits<int>(SpriteShape, 2, name: nameof(SpriteShape));
+                YPosition = b.SerializeBits<byte>(YPosition, 8, name: nameof(YPosition));
+                ObjectMode = b.SerializeBits<GBA_OBJ_ATTR_ObjectMode>(ObjectMode, 2, name: nameof(ObjectMode));
+                GraphicsMode = b.SerializeBits<GBA_OBJ_ATTR_GraphicsMode>(GraphicsMode, 2, name: nameof(GraphicsMode));
+                Mosaic = b.SerializeBits<bool>(Mosaic, 1, name: nameof(Mosaic));
+                Is8Bit = b.SerializeBits<bool>(Is8Bit, 1, name: nameof(Is8Bit));
+                SpriteShape = b.SerializeBits<byte>(SpriteShape, 2, name: nameof(SpriteShape));
             });
             s.DoBits<ushort>(b =>
             {
-                XPosition = (ushort)b.SerializeBits<int>(XPosition, 9, name: nameof(XPosition));
+                XPosition = b.SerializeBits<ushort>(XPosition, 9, name: nameof(XPosition));
 
                 if (ObjectMode == GBA_OBJ_ATTR_ObjectMode.AFF || ObjectMode == GBA_OBJ_ATTR_ObjectMode.AFF_DBL)
                 {
-                    AffineIndex = (byte)b.SerializeBits<int>(AffineIndex, 5, name: nameof(AffineIndex));
+                    AffineIndex = b.SerializeBits<byte>(AffineIndex, 5, name: nameof(AffineIndex));
                 }
                 else
                 {
-                    b.SerializeBits<int>(0, 3, name: "Padding");
-                    HorizontalFlip = b.SerializeBits<int>(HorizontalFlip ? 1 : 0, 1, name: nameof(HorizontalFlip)) == 1;
-                    VerticalFlip = b.SerializeBits<int>(VerticalFlip ? 1 : 0, 1, name: nameof(VerticalFlip)) == 1;
+                    b.SerializePadding(3);
+                    HorizontalFlip = b.SerializeBits<bool>(HorizontalFlip, 1, name: nameof(HorizontalFlip));
+                    VerticalFlip = b.SerializeBits<bool>(VerticalFlip, 1, name: nameof(VerticalFlip));
                 }
 
-                SpriteSize = (byte)b.SerializeBits<int>(SpriteSize, 2, name: nameof(SpriteSize));
+                SpriteSize = b.SerializeBits<byte>(SpriteSize, 2, name: nameof(SpriteSize));
             });
             s.DoBits<ushort>(b =>
             {
-                TileIndex = (byte)b.SerializeBits<int>(TileIndex, 10, name: nameof(TileIndex));
-                Priority = (byte)b.SerializeBits<int>(Priority, 2, name: nameof(Priority));
-                Palette = (byte)b.SerializeBits<int>(Palette, 4, name: nameof(Palette));
+                TileIndex = b.SerializeBits<ushort>(TileIndex, 10, name: nameof(TileIndex));
+                Priority = b.SerializeBits<byte>(Priority, 2, name: nameof(Priority));
+                Palette = b.SerializeBits<byte>(Palette, 4, name: nameof(Palette));
             });
         }
     }
