@@ -12,16 +12,9 @@ namespace BinarySerializer.GBA
     {
         public string Name => "GBA_LZSS";
 
-        /// <summary>
-        /// Decodes the data and returns it in a stream
-        /// </summary>
-        /// <param name="s">The encoded stream</param>
-        /// <returns>The stream with the decoded data</returns>
-        public Stream DecodeStream(Stream s) 
+        public void DecodeStream(Stream input, Stream output) 
         {
-            var decompressedStream = new MemoryStream();
-
-            Reader reader = new Reader(s, isLittleEndian: true); // No using, because we don't want to close the stream
+            using Reader reader = new Reader(input, isLittleEndian: true, leaveOpen: true);
             byte magic = reader.ReadByte();
 
             if (magic != 0x10)
@@ -88,7 +81,7 @@ namespace BinarySerializer.GBA
                     for (int i = 0; i < length; i++) {
                         byte next = buffer[bufIdx % bufferLength];
                         bufIdx++;
-                        decompressedStream.WriteByte(next);
+                        output.WriteByte(next);
                         buffer[bufferOffset] = next;
                         bufferOffset = (bufferOffset + 1) % bufferLength;
                     }
@@ -99,19 +92,13 @@ namespace BinarySerializer.GBA
                     byte next = reader.ReadByte();
 
                     currentOutSize++;
-                    decompressedStream.WriteByte(next);
+                    output.WriteByte(next);
                     buffer[bufferOffset] = next;
                     bufferOffset = (bufferOffset + 1) % bufferLength;
                 }
             }
-
-            // Set position back to 0
-            decompressedStream.Position = 0;
-
-            // Return the compressed data stream
-            return decompressedStream;
         }
 
-        public Stream EncodeStream(Stream s) => throw new NotImplementedException();
+        public void EncodeStream(Stream input, Stream output) => throw new NotImplementedException();
     }
 }
