@@ -32,6 +32,7 @@
         };
 
         public static Size GetSpriteShape(int shape, int size) => SpriteShapes[shape * 4 + size];
+        public static Size GetSpriteShape(this GBA_OBJ_ATTR attr) => SpriteShapes[attr.SpriteShape * 4 + attr.SpriteSize];
 
         public class Size
         {
@@ -39,10 +40,20 @@
             {
                 Width = width;
                 Height = height;
+
+                TilesWidth = width / TileSize;
+                TilesHeight = height / TileSize;
+
+                TilesCount = TilesWidth * TilesHeight;
             }
 
             public int Width { get; }
             public int Height { get; }
+
+            public int TilesWidth { get; }
+            public int TilesHeight { get; }
+
+            public int TilesCount { get; }
         }
     }
 }
