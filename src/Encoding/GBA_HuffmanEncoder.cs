@@ -48,10 +48,12 @@ namespace BinarySerializer.GBA
 
             long treeEnd = (reader.BaseStream.Position - 1) + treeSize;
 
+            int recursionCount = 0;
+
             // the relative offset may be 4 more (when the initial decompressed size is 0), but
             // since it's relative that doesn't matter, especially when it only matters if
             // the given value is odd or even.
-            HuffTreeNode rootNode = new HuffTreeNode(reader, false, 5, treeEnd);
+            HuffTreeNode rootNode = new HuffTreeNode(reader, false, 5, treeEnd, ref recursionCount);
 
             // re-position the stream after the tree (the stream is currently positioned after the root
             // node, which is located at the start of the tree definition)
@@ -740,8 +742,12 @@ namespace BinarySerializer.GBA
             /// of the compressed file.</param>
             /// <param name="maxStreamPos">The indicated end of the huffman tree. If the stream is past
             /// this position, the tree is invalid.</param>
-            public HuffTreeNode(Reader reader, bool isData, long relOffset, long maxStreamPos)
+            public HuffTreeNode(Reader reader, bool isData, long relOffset, long maxStreamPos, ref int recursionCount)
             {
+                // Sanity check to avoid out of memory exceptions
+                if (recursionCount++ > 0xFFFF)
+                    throw new Exception("Huffman data contains too many nodes");
+
                 /*
                  Tree Table (list of 8bit nodes, starting with the root node)
                     Root Node and Non-Data-Child Nodes are:
@@ -781,13 +787,13 @@ namespace BinarySerializer.GBA
                     reader.BaseStream.Position += (zeroRelOffset - relOffset) - 1;
 
                     // read the 0-node
-                    Child0 = new HuffTreeNode(reader, zeroIsData, zeroRelOffset, maxStreamPos)
+                    Child0 = new HuffTreeNode(reader, zeroIsData, zeroRelOffset, maxStreamPos, ref recursionCount)
                     {
                         Parent = this
                     };
 
                     // the 1-node is directly behind the 0-node
-                    Child1 = new HuffTreeNode(reader, oneIsData, zeroRelOffset + 1, maxStreamPos)
+                    Child1 = new HuffTreeNode(reader, oneIsData, zeroRelOffset + 1, maxStreamPos, ref recursionCount)
                     {
                         Parent = this
                     };
