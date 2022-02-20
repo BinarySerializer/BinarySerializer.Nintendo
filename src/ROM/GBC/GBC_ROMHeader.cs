@@ -2,10 +2,7 @@
 
 namespace BinarySerializer.GBA
 {
-    /// <summary>
-    /// Base data for a GBC ROM
-    /// </summary>
-    public class GBC_ROMBase : BinarySerializable
+    public class GBC_ROMHeader : BinarySerializable
     {
         public byte[] EntryPoint { get; set; }
         public byte[] NintendoLogo { get; set; }
