@@ -1,6 +1,6 @@
-﻿namespace BinarySerializer.GBA
+﻿namespace BinarySerializer.Nintendo
 {
-    public class MapTile : BinarySerializable
+    public class GBA_MapTile : BinarySerializable
     {
         public bool Pre_IsAffine { get; set; }
 

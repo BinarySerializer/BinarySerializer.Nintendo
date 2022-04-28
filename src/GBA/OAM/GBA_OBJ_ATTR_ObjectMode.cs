@@ -1,4 +1,4 @@
-﻿namespace BinarySerializer.GBA
+﻿namespace BinarySerializer.Nintendo
 {
     public enum GBA_OBJ_ATTR_ObjectMode
     {

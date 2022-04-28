@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace BinarySerializer.GBA
+namespace BinarySerializer.Nintendo
 {
     // Implemented from dsdecmp, todo: refactor code to follow project coding style
     public class GBA_RLEEncoder : GBA_Encoder

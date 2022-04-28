@@ -1,4 +1,4 @@
-﻿namespace BinarySerializer.GBA
+﻿namespace BinarySerializer.Nintendo
 {
     public class GBA_OBJ_ATTR : BinarySerializable
     {

@@ -1,8 +1,8 @@
 ﻿using System.Text;
 
-namespace BinarySerializer.GBA
+namespace BinarySerializer.Nintendo
 {
-    public class GBC_ROMHeader : BinarySerializable
+    public class GB_ROMHeader : BinarySerializable
     {
         public byte[] EntryPoint { get; set; }
         public byte[] NintendoLogo { get; set; }

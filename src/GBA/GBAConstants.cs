@@ -1,4 +1,4 @@
-﻿namespace BinarySerializer.GBA
+﻿namespace BinarySerializer.Nintendo
 {
     public static class GBAConstants
     {

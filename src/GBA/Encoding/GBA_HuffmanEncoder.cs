@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace BinarySerializer.GBA
+namespace BinarySerializer.Nintendo
 {
     // Implemented from dsdecmp, todo: refactor code to follow project coding style
     public class GBA_HuffmanEncoder : GBA_Encoder

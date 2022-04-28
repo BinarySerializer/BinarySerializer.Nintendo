@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace BinarySerializer.GBA
+namespace BinarySerializer.Nintendo
 {
     public class GBA_ROMHeader : BinarySerializable
     {

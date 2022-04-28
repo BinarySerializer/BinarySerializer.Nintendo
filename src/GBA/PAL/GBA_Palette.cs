@@ -1,6 +1,6 @@
-﻿namespace BinarySerializer.GBA
+﻿namespace BinarySerializer.Nintendo
 {
-    public class Palette : BinarySerializable
+    public class GBA_Palette : BinarySerializable
     {
         public bool Pre_Is8Bit { get; set; } // True for 256 colors, otherwise 16
 

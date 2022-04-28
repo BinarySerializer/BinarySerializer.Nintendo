@@ -1,4 +1,4 @@
-﻿namespace BinarySerializer.GBA
+﻿namespace BinarySerializer.Nintendo
 {
     /// <summary>
     /// Base data for a GBA ROM. Inherit from this if serializing data from a GBA ROM.

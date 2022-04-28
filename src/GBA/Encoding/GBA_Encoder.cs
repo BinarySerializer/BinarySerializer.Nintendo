@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace BinarySerializer.GBA
+namespace BinarySerializer.Nintendo
 {
     public abstract class GBA_Encoder : IStreamEncoder
     {
