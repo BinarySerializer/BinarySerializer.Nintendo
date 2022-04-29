@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace BinarySerializer.Nintendo
+namespace BinarySerializer.Nintendo.GBA
 {
     // Implemented from dsdecmp, todo: refactor code to follow project coding style
-    public class GBA_HuffmanEncoder : GBA_Encoder
+    public class HuffmanEncoder : BaseEncoder
     {
         protected override byte HeaderValue => EncodedBlockSize;
 
@@ -138,6 +138,7 @@ namespace BinarySerializer.Nintendo
             throw new NotImplementedException();
 
             // TODO: Below code appears to not work
+            /*
             switch (EncodedBlockSize)
             {
                 case 4:
@@ -150,7 +151,7 @@ namespace BinarySerializer.Nintendo
 
                 default:
                     throw new Exception($"Unsupported block size {EncodedBlockSize}");
-            }
+            }*/
         }
 
         private void Encode4(Reader reader, Writer writer)

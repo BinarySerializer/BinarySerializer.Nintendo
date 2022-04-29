@@ -1,6 +1,6 @@
-﻿namespace BinarySerializer.Nintendo
+﻿namespace BinarySerializer.Nintendo.GBA
 {
-    public static class GBAConstants
+    public static class Constants
     {
         // Addresses
         public const uint Address_WRAM = 0x2000000;  // Size 0x40000
@@ -32,7 +32,7 @@
         };
 
         public static Size GetSpriteShape(int shape, int size) => SpriteShapes[shape * 4 + size];
-        public static Size GetSpriteShape(this GBA_OBJ_ATTR attr) => SpriteShapes[attr.SpriteShape * 4 + attr.SpriteSize];
+        public static Size GetSpriteShape(this OBJ_ATTR attr) => SpriteShapes[attr.SpriteShape * 4 + attr.SpriteSize];
 
         public class Size
         {

@@ -1,4 +1,4 @@
-﻿namespace BinarySerializer.Nintendo 
+﻿namespace BinarySerializer.Nintendo.N64 
 {
     public abstract class RSP_CommandData : BinarySerializable 
     {

@@ -1,9 +1,9 @@
 ﻿using System.Text;
 
-namespace BinarySerializer.Nintendo
+namespace BinarySerializer.Nintendo.NDS
 {
     // https://problemkaputt.de/gbatek.htm#dscartridgeheader
-    public class NDS_ROMHeader : BinarySerializable
+    public class ROMHeader : BinarySerializable
     {
         public string GameTitle { get; set; }
         public string GameCode { get; set; }

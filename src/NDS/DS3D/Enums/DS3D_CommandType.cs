@@ -1,4 +1,4 @@
-﻿namespace BinarySerializer.Nintendo
+﻿namespace BinarySerializer.Nintendo.NDS
 {
     public enum DS3D_CommandType : byte 
     {

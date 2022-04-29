@@ -1,6 +1,6 @@
-﻿namespace BinarySerializer.Nintendo
+﻿namespace BinarySerializer.Nintendo.GBA
 {
-    public enum GBA_OBJ_ATTR_ObjectMode
+    public enum OBJ_ATTR_ObjectMode
     {
         /// <summary>
         /// Normal rendering

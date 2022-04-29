@@ -1,4 +1,4 @@
-﻿namespace BinarySerializer.Nintendo 
+﻿namespace BinarySerializer.Nintendo.NDS 
 {
     public class DS3D_Command_Vtx_16 : DS3D_CommandData 
     {

@@ -1,18 +1,18 @@
-﻿namespace BinarySerializer.Nintendo
+﻿namespace BinarySerializer.Nintendo.GBA
 {
     /// <summary>
     /// Base data for a GBA ROM. Inherit from this if serializing data from a GBA ROM.
     /// </summary>
-    public class GBA_ROMBase : BinarySerializable
+    public class ROMBase : BinarySerializable
     {
         /// <summary>
         /// The ROM header
         /// </summary>
-        public GBA_ROMHeader Header { get; set; }
+        public ROMHeader Header { get; set; }
 
         public override void SerializeImpl(SerializerObject s)
         {
-            Header = s.SerializeObject<GBA_ROMHeader>(Header, name: nameof(Header));
+            Header = s.SerializeObject<ROMHeader>(Header, name: nameof(Header));
         }
     }
 }

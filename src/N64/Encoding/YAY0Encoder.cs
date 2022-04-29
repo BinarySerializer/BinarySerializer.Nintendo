@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace BinarySerializer.Nintendo
+namespace BinarySerializer.Nintendo.N64
 {
     /// <summary>
     /// Encoder for YAY0 Compressed Data, common in Nintendo 64 games

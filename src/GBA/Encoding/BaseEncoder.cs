@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 
-namespace BinarySerializer.Nintendo
+namespace BinarySerializer.Nintendo.GBA
 {
-    public abstract class GBA_Encoder : IStreamEncoder
+    public abstract class BaseEncoder : IStreamEncoder
     {
         protected virtual byte HeaderValue => 0;
 

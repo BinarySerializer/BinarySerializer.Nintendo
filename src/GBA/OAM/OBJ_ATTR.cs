@@ -1,10 +1,10 @@
-﻿namespace BinarySerializer.Nintendo
+﻿namespace BinarySerializer.Nintendo.GBA
 {
-    public class GBA_OBJ_ATTR : BinarySerializable
+    public class OBJ_ATTR : BinarySerializable
     {
         public byte YPosition { get; set; }
-        public GBA_OBJ_ATTR_ObjectMode ObjectMode { get; set; }
-        public GBA_OBJ_ATTR_GraphicsMode GraphicsMode { get; set; }
+        public OBJ_ATTR_ObjectMode ObjectMode { get; set; }
+        public OBJ_ATTR_GraphicsMode GraphicsMode { get; set; }
         public bool Mosaic { get; set; }
         public bool Is8Bit { get; set; }
         public byte SpriteShape { get; set; }
@@ -24,8 +24,8 @@
             s.DoBits<ushort>(b =>
             {
                 YPosition = b.SerializeBits<byte>(YPosition, 8, name: nameof(YPosition));
-                ObjectMode = b.SerializeBits<GBA_OBJ_ATTR_ObjectMode>(ObjectMode, 2, name: nameof(ObjectMode));
-                GraphicsMode = b.SerializeBits<GBA_OBJ_ATTR_GraphicsMode>(GraphicsMode, 2, name: nameof(GraphicsMode));
+                ObjectMode = b.SerializeBits<OBJ_ATTR_ObjectMode>(ObjectMode, 2, name: nameof(ObjectMode));
+                GraphicsMode = b.SerializeBits<OBJ_ATTR_GraphicsMode>(GraphicsMode, 2, name: nameof(GraphicsMode));
                 Mosaic = b.SerializeBits<bool>(Mosaic, 1, name: nameof(Mosaic));
                 Is8Bit = b.SerializeBits<bool>(Is8Bit, 1, name: nameof(Is8Bit));
                 SpriteShape = b.SerializeBits<byte>(SpriteShape, 2, name: nameof(SpriteShape));
@@ -34,7 +34,7 @@
             {
                 XPosition = b.SerializeBits<ushort>(XPosition, 9, name: nameof(XPosition));
 
-                if (ObjectMode == GBA_OBJ_ATTR_ObjectMode.AFF || ObjectMode == GBA_OBJ_ATTR_ObjectMode.AFF_DBL)
+                if (ObjectMode == OBJ_ATTR_ObjectMode.AFF || ObjectMode == OBJ_ATTR_ObjectMode.AFF_DBL)
                 {
                     AffineIndex = b.SerializeBits<byte>(AffineIndex, 5, name: nameof(AffineIndex));
                 }

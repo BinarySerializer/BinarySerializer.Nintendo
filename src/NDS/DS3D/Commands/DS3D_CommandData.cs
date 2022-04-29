@@ -1,4 +1,4 @@
-﻿namespace BinarySerializer.Nintendo 
+﻿namespace BinarySerializer.Nintendo.NDS 
 {
     public abstract class DS3D_CommandData : BinarySerializable 
     {

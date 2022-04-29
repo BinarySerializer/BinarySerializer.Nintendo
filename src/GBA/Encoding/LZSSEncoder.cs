@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
 
-namespace BinarySerializer.Nintendo
+namespace BinarySerializer.Nintendo.GBA
 {
     // Implemented from dsdecmp, todo: refactor code to follow project coding style
-    public class GBA_LZSSEncoder : GBA_Encoder
+    public class LZSSEncoder : BaseEncoder
     {
         public override int ID => 1;
         public override string Name => "GBA_LZSS";

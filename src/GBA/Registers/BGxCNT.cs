@@ -1,6 +1,6 @@
-﻿namespace BinarySerializer.Nintendo
+﻿namespace BinarySerializer.Nintendo.GBA
 {
-    public class GBA_BGxCNT : BinarySerializable
+    public class BGxCNT : BinarySerializable
     {
         public byte Priority { get; set; }
         public byte CharacterBaseBlock { get; set; }
