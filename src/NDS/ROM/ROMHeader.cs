@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -86,13 +87,24 @@ namespace BinarySerializer.Nintendo.NDS
 
             foreach (string part in parts)
             {
-                FNT_SubTableEntry subEntry = currentDir.SubTable.FirstOrDefault(x => x.Name == part);
+                int fileID = currentDir.FirstFileID;
+                
+                FNT_SubTableEntry subEntry = currentDir.SubTable.FirstOrDefault(x =>
+                {
+                    if (x.Name == part)
+                        return true;
+
+                    if (x.IsFile)
+                        fileID++;
+
+                    return false;
+                });
 
                 if (subEntry == null)
                     return null;
 
                 if (subEntry.IsFile)
-                    return FAT[subEntry.ID];
+                    return FAT[fileID];
 
                 currentDir = FNT.Directories[(subEntry.ID & 0xFFF) - 1]; // -1 since the root isn't included
             }
@@ -118,6 +130,34 @@ namespace BinarySerializer.Nintendo.NDS
                 if (s.CurrentPointer != file.EndPointer)
                     s.SystemLog?.LogWarning("The full file {0} was not serialized. Missing {1} bytes.", filePath, file.EndPointer - s.CurrentPointer);
             });
+        }
+
+        public Dictionary<string, FAT_Entry> CreateFileTable()
+        {
+            Dictionary<string, FAT_Entry> table = new();
+
+            const char separator = '/';
+            processDir(FNT, String.Empty);
+
+            return table;
+
+            void processDir(FNT_Entry fntEntry, string path)
+            {
+                int fileID = fntEntry.FirstFileID;
+
+                foreach (FNT_SubTableEntry subEntry in fntEntry.SubTable)
+                {
+                    if (subEntry.IsFile)
+                    {
+                        table.Add(path + subEntry.Name, FAT[fileID]);
+                        fileID++;
+                    }
+                    else
+                    {
+                        processDir(FNT.Directories[(subEntry.ID & 0xFFF) - 1], path + subEntry.Name + separator);
+                    }
+                }
+            }
         }
 
         public override void SerializeImpl(SerializerObject s)
