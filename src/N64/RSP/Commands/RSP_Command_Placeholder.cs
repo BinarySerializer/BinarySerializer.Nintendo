@@ -4,7 +4,7 @@
     {
         public override void SerializeBits(BitSerializerObject b) 
         {
-            b.Context.SystemLog?.LogWarning("{0}: Unparsed RSP Command: {1}", Offset, Command);
+            b.Context.SystemLogger?.LogWarning("{0}: Unparsed RSP Command: {1}", Offset, Command);
             b.SerializePadding(7 * 8);
         }
     }

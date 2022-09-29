@@ -1,6 +1,6 @@
 ﻿namespace BinarySerializer.Nintendo.GBA
 {
-    public class MapTile : BinarySerializable
+    public class MapTile : BinarySerializable, ISerializerShortLog
     {
         public bool Pre_IsAffine { get; set; }
 
@@ -23,7 +23,7 @@
                 });
         }
 
-        public override bool UseShortLog => true;
+        public string ShortLog => ToString();
         public override string ToString() => $"Tile(Index: {TileIndex}, FlipX: {FlipX}, FlipY: {FlipY}, Pal: {PaletteIndex})";
     }
 }

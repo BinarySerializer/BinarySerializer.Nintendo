@@ -1,6 +1,6 @@
 ﻿namespace BinarySerializer.Nintendo.N64 
 {
-    public class RSP_Vertex : BinarySerializable 
+    public class RSP_Vertex : BinarySerializable, ISerializerShortLog
     {
         // Position
         public short X { get; set; }
@@ -38,7 +38,7 @@
             Color = s.SerializeObject<RGBA8888Color>(Color, name: nameof(Color));
         }
 
-        public override bool UseShortLog => true;
+        public string ShortLog => ToString();
         public override string ToString() => $"Vertex(Pos({X}, {Y}, {Z}), UV({U}, {V}), Normal({NormalX}, {NormalY}, {NormalZ}, Color({Color}))";
     }
 }

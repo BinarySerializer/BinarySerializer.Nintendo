@@ -128,7 +128,7 @@ namespace BinarySerializer.Nintendo.NDS
                 serializeFunc(s, fileLength);
 
                 if (s.CurrentPointer != file.EndPointer)
-                    s.SystemLog?.LogWarning("The full file {0} was not serialized. Missing {1} bytes.", filePath, file.EndPointer - s.CurrentPointer);
+                    s.SystemLogger?.LogWarning("The full file {0} was not serialized. Missing {1} bytes.", filePath, file.EndPointer - s.CurrentPointer);
             });
         }
 

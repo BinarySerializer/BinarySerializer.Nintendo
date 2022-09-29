@@ -1,6 +1,6 @@
 ﻿namespace BinarySerializer.Nintendo.NDS 
 {
-    public class DS3D_Command_Vtx_16 : DS3D_CommandData 
+    public class DS3D_Command_Vtx_16 : DS3D_CommandData, ISerializerShortLog
     {
         public short X { get; set; }
         public short Y { get; set; }
@@ -14,7 +14,7 @@
             s.SerializePadding(2, logIfNotNull: true);
         }
 
-        public override bool UseShortLog => true;
+        public string ShortLog => ToString();
         public override string ToString() => $"{GetType()}({X}, {Y}, {Z})";
     }
 }

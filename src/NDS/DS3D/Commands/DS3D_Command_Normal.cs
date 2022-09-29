@@ -1,6 +1,6 @@
 ﻿namespace BinarySerializer.Nintendo.NDS 
 {
-    public class DS3D_Command_Normal : DS3D_CommandData 
+    public class DS3D_Command_Normal : DS3D_CommandData, ISerializerShortLog
     {
         public short XShort { get; set; }
         public short YShort { get; set; }
@@ -34,7 +34,7 @@
             });
         }
 
-        public override bool UseShortLog => true;
+        public string ShortLog => ToString();
         public override string ToString() => $"{GetType()}({X}, {Y}, {Z})";
     }
 }
