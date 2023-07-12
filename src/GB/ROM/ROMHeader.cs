@@ -7,9 +7,9 @@ namespace BinarySerializer.Nintendo.GB
         public byte[] EntryPoint { get; set; }
         public byte[] NintendoLogo { get; set; }
         public string GameTitle { get; set; }
-        public string MaManufacturerCode { get; set; }
+        public string ManufacturerCode { get; set; }
         public byte CGBFlag { get; set; }
-        public ushort NewLicenseeCode { get; set; }
+        public string NewLicenseeCode { get; set; }
         public byte SGBFlag { get; set; }
         public Cartridge_Type CartridgeType { get; set; }
         public ROM_Size ROMSize { get; set; }
@@ -28,9 +28,9 @@ namespace BinarySerializer.Nintendo.GB
                 EntryPoint = s.SerializeArray<byte>(EntryPoint, 4, name: nameof(EntryPoint));
                 NintendoLogo = s.SerializeArray<byte>(NintendoLogo, 48, name: nameof(NintendoLogo));
                 GameTitle = s.SerializeString(GameTitle, 11, Encoding.ASCII, name: nameof(GameTitle));
-                MaManufacturerCode = s.SerializeString(MaManufacturerCode, 4, Encoding.ASCII, name: nameof(MaManufacturerCode));
+                ManufacturerCode = s.SerializeString(ManufacturerCode, 4, Encoding.ASCII, name: nameof(ManufacturerCode));
                 CGBFlag = s.Serialize<byte>(CGBFlag, name: nameof(CGBFlag));
-                NewLicenseeCode = s.Serialize<ushort>(NewLicenseeCode, name: nameof(NewLicenseeCode));
+                NewLicenseeCode = s.SerializeString(NewLicenseeCode, 2, name: nameof(NewLicenseeCode));
                 SGBFlag = s.Serialize<byte>(SGBFlag, name: nameof(SGBFlag));
                 CartridgeType = s.Serialize<Cartridge_Type>(CartridgeType, name: nameof(CartridgeType));
                 ROMSize = s.Serialize<ROM_Size>(ROMSize, name: nameof(ROMSize));
