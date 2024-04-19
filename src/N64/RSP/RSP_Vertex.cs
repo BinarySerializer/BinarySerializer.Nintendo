@@ -14,7 +14,7 @@
         public short V { get; set; }
 
         // Union
-        public RGBA8888Color Color { get; set; }
+        public SerializableColor Color { get; set; }
         public sbyte NormalX { get; set; }
         public sbyte NormalY { get; set; }
         public sbyte NormalZ { get; set; }
@@ -35,7 +35,7 @@
                 NormalZ = s.Serialize<sbyte>(NormalZ, name: nameof(NormalZ));
             });
 
-            Color = s.SerializeObject<RGBA8888Color>(Color, name: nameof(Color));
+            Color = s.SerializeInto<SerializableColor>(Color, BytewiseColor.RGBA8888, name: nameof(Color));
         }
 
         public string ShortLog => ToString();
