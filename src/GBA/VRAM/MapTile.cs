@@ -2,6 +2,14 @@
 {
     public readonly struct MapTile : ISerializerShortLog
     {
+        public MapTile(int tileIndex)
+        {
+            TileIndex = tileIndex;
+            FlipX = false;
+            FlipY = false;
+            PaletteIndex = 0;
+        }
+
         public MapTile(int tileIndex, bool flipX, bool flipY, byte paletteIndex)
         {
             TileIndex = tileIndex;
