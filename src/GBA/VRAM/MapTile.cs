@@ -10,6 +10,14 @@
             PaletteIndex = 0;
         }
 
+        public MapTile(int tileIndex, byte paletteIndex)
+        {
+            TileIndex = tileIndex;
+            FlipX = false;
+            FlipY = false;
+            PaletteIndex = paletteIndex;
+        }
+
         public MapTile(int tileIndex, bool flipX, bool flipY, byte paletteIndex)
         {
             TileIndex = tileIndex;
