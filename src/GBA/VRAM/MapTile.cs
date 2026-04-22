@@ -5,25 +5,33 @@
         public MapTile(int tileIndex)
         {
             TileIndex = tileIndex;
+            PaletteIndex = 0;
             FlipX = false;
             FlipY = false;
-            PaletteIndex = 0;
         }
 
         public MapTile(int tileIndex, byte paletteIndex)
         {
             TileIndex = tileIndex;
+            PaletteIndex = paletteIndex;
             FlipX = false;
             FlipY = false;
-            PaletteIndex = paletteIndex;
         }
 
-        public MapTile(int tileIndex, bool flipX, bool flipY, byte paletteIndex)
+        public MapTile(int tileIndex, byte paletteIndex, bool flipX)
         {
             TileIndex = tileIndex;
+            PaletteIndex = paletteIndex;
+            FlipX = flipX;
+            FlipY = false;
+        }
+
+        public MapTile(int tileIndex, byte paletteIndex, bool flipX, bool flipY)
+        {
+            TileIndex = tileIndex;
+            PaletteIndex = paletteIndex;
             FlipX = flipX;
             FlipY = flipY;
-            PaletteIndex = paletteIndex;
         }
 
         public int TileIndex { get; }
@@ -40,7 +48,7 @@
                 bool flipY = b.SerializeBits<bool>(x.FlipY, 1, name: nameof(FlipY));
                 byte paletteIndex = b.SerializeBits<byte>(x.PaletteIndex, 4, name: nameof(PaletteIndex));
 
-                x = new MapTile(tileIndex, flipX, flipY, paletteIndex);
+                x = new MapTile(tileIndex, paletteIndex, flipX, flipY);
             });
 
             return x;
@@ -50,7 +58,7 @@
         {
             int tileIndex = s.Serialize<byte>((byte)x.TileIndex, name: nameof(TileIndex));
 
-            return new MapTile(tileIndex, false, false, 0);
+            return new MapTile(tileIndex, 0, false, false);
         };
 
         public string ShortLog => ToString();
